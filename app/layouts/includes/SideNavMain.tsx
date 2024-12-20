@@ -20,7 +20,7 @@ export default function TopNav(){
                 <div className="lg:w-full w-[55px] mx-auto">
                     <Link  href= "/">
                         <MenuItem
-                            iconSting="For You"
+                            iconSting="Fou You"
                             colorSting={pathname === '/' ? '#F02C56' : ''}
                             sizeSting="25"
                         />

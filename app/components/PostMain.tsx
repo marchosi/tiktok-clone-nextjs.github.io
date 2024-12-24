@@ -20,7 +20,7 @@ export default function PostMain({post}:PostMainCompTypes){
 
             observer.observe(postMainElement);
         }
-    })
+    }, [])
 
     return(
         <>

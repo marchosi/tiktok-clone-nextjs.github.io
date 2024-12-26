@@ -55,8 +55,8 @@ export default function EditProfileOverlay () {
                     ${!uploadedImage ? 'h-[655px]':'h-[580px]'}
                 `}
             >
-                 <div className="aboslute fiex items-center justify-center w-full p-5 left-0 top-0 border-b border-gray-300">
-                    <h1 className="text-[22px] font-mdeium">
+                 <div className="absolute flex items-center justify-center w-full p-5 left-0 top-0 border-b border-gray-300">
+                    <h1 className="text-[22px] font-medium">
                         Edit Profile
                     </h1>
                     <button
@@ -67,7 +67,7 @@ export default function EditProfileOverlay () {
                     </button>
                  </div>
 
-                 <div className={`h-[calc(500px-200px) ${!uploadedImage ? 'mt-16':'mt-[58px]'}`}>
+                 <div className={`h-[calc(500px-200px)] ${!uploadedImage ? 'mt-16':'mt-[58px]'}`}>
                     {!uploadedImage ? (
                         <div>
                             <div
@@ -83,7 +83,7 @@ export default function EditProfileOverlay () {
                                         htmlFor="image" 
                                         className="relative cursor-pointer">
                                         <img  
-                                            className="ronuded-full" width="95"
+                                            className="rounded-full" width="95"
                                             src={userImage}
                                         />
                                         <button className="absolute bottom-0 right-0 bg-white shadow-xl border p-1 border-gray-300 inline-block w-[32px] h-[32px]">

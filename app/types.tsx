@@ -1,3 +1,18 @@
+export interface UserContextTypes{
+    user: User | null;
+    register: (name: string, email: string, password: string) =>Promise<void>;
+    login: (email: string, password: string) =>Promise<void>;
+    logout: () =>Promise<void>;
+    checkUser: () =>Promise<void>;
+}
+
+export interface User{
+    id:string,
+    name:string,
+    bio:string,
+    image:string,
+}
+
 export interface RandomUsers{
     id:string;
     name:string;
@@ -30,6 +45,19 @@ export interface Post{
     created_at:string; 
 }
 
+export interface CommentsWithProfile{
+    id:string;
+    user_id:string;
+    post_id:string;
+    text:string;
+    created_at:string;
+    profile:{
+        user_id:string;
+        name:string;
+        image:string;
+    }
+}
+
 export interface Comments{
     id:string;
     user_id:string;
@@ -60,7 +88,19 @@ export interface UploadError{
 ////////////////////////////////////
 
 //COMPONENT TYPES
+export interface CommentsHeaderCompTypes{
+    params: { userId : string; postId: string; }
+    post:PostWithProfile
+}
 
+export interface CommentsCompTypes{
+    params: { userId : string; postId: string; }
+}
+
+export interface  SingleCommentsCompTypes {
+    params: { userId : string; postId: string; }
+    comment:CommentsWithProfile
+}
 
 export interface PostMainCompTypes{
     post:PostWithProfile
@@ -71,7 +111,7 @@ export interface PostMainLikesCompTypes{
 } 
 
 export interface PostPageTypes{
-    params:{ userId : string, postId: string; };
+    params: { userId : string; postId: string; }
 }
 
 export interface PostUserCompTypes{

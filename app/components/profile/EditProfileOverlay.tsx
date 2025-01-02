@@ -56,12 +56,12 @@ export default function EditProfileOverlay () {
                 `}
             >
                  <div className="absolute flex items-center justify-center w-full p-5 left-0 top-0 border-b border-gray-300">
-                    <h1 className="text-[22px] font-medium">
+                    <h1 className="text-[18px] font-medium">
                         Edit Profile
                     </h1>
                     <button
                         disabled={isUpdating}
-                        className="Hover:bg-gray-200 p-1 rounded-full"
+                        className="hover:bg-gray-200 p-1 rounded-full absolute right-3 top-3"
                     >
                         <AiOutlineClose size='25'/>
                     </button>
@@ -86,7 +86,7 @@ export default function EditProfileOverlay () {
                                             className="rounded-full" width="95"
                                             src={userImage}
                                         />
-                                        <button className="absolute bottom-0 right-0 bg-white shadow-xl border p-1 border-gray-300 inline-block w-[32px] h-[32px]">
+                                        <button className="absolute bottom-0 right-0 rounded-full bg-white shadow-xl border p-1 border-gray-300 inline-block w-[32px] h-[32px]">
                                             <BsPencil size='17' className="ml-0.5"/>
                                         </button>
                                     </label>
@@ -187,7 +187,7 @@ export default function EditProfileOverlay () {
 
                             <button
                                 onClick={() => cropAndUpdateImage()}
-                                className="flex items-center bg-[#F02C56] text-white border rounded-md ml-3 px-[6px]"
+                                className="flex items-center border bg-[#F02C56] text-white rounded-md ml-3 py-[6px] px-3"
                             >
                                 <span className="px-2 font-medium text-[15px]">
                                     {isUpdating ?<BiLoaderCircle color="#ffffff" className="my-1 mx-2.5 animate-spin"/> :"Save"}

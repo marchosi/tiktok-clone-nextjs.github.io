@@ -2,9 +2,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation" 
 import  MenuItem  from "./MeunItem"
 import ClientOnly from "@/app/components/ClientOnly"
-import { ID } from "appwrite"
 import MenuItemFollow from "./MenuItemFollow"
-import { defaultVisibleArea } from "react-advanced-cropper"
 
 export default function TopNav(){
     const pathname = usePathname()
@@ -14,7 +12,7 @@ export default function TopNav(){
                 id="SideNavMain"
                 className={`
                         fixed z-20 bg-white pt-[70px] h-full lg:border-r-0 border-r w-[75px] overflow-auto
-                        ${pathname === '/' ? 'lg:w-[310px]': 'lg"w-[220px]'}
+                        ${pathname === '/' ? 'lg:w-[310px]': 'lg w-[220px]'}
                     `}
             >
                 <div className="lg:w-full w-[55px] mx-auto">
@@ -38,7 +36,7 @@ export default function TopNav(){
                             </ClientOnly>
 
                             <button className="lg:block hidden text-[#F02C56] pt-1.5 pl-2 text-[13px]">
-                            See all
+                                See all
                             </button>
 
 
@@ -55,7 +53,7 @@ export default function TopNav(){
                             </ClientOnly>
 
                             <button className="lg:block hidden text-[#F02C56] pt-1.5 pl-2 text-[13px]">
-                            See more
+                                See more
                             </button>
                         </div>
                     ) : null}

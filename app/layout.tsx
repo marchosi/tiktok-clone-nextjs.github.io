@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import AuthOverlay from "@/app/components/AuthOverlay";
 import UserProvider from "./context/user";
+import AllOverlays from "./components/AllPOverlays";
 
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <UserProvider>
       
         <body>
-          <AuthOverlay/>
+          <AllOverlays/>
           {children}
         </body>
         

@@ -13,6 +13,14 @@ export interface User{
     image:string,
 }
 
+export interface Profile {
+    id:string,
+    user_id: string,
+    name:string,
+    bio:string,
+    image:string,
+}
+
 export interface RandomUsers{
     id:string;
     name:string;
@@ -58,7 +66,7 @@ export interface CommentsWithProfile{
     }
 }
 
-export interface Comments{
+export interface Comment {
     id:string;
     user_id:string;
     post_id:string;

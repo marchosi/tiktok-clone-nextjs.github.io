@@ -1,33 +1,36 @@
 "use client"
 
+import { useUser } from "@/app/context/user";
 import ClientOnly from "../../components/ClientOnly";
 import PostUser from "@/app/components/profile/PostUser";
 import MainLayout from "@/app/layouts/MainLayout";
 import { ProfilePageTypes } from "@/app/types";
 import { BsPencil } from "react-icons/bs";
-import EditProfileOverlay from "../../components/profile/EditProfileOverlay";
-
-
+import { usePostStore } from "@/app/stores/post";
+import { useProfileStore } from "@/app/stores/profile";
+import { useGeneralStore } from "@/app/stores/general";
+import { useEffect } from "react";
+import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
 
 export default function Profile({ params }: ProfilePageTypes) {
-    const currentProfile ={
-        id:'123',
-        user_id:'123',
-        name:'John Weeks',
-        image:'http://placehold.co/200',
-        bio:'this is the bio section!!!'
-    }
+    const contextUser = useUser()
+    let { postsByUser, setPostsByUser } = usePostStore()
+    let { setCurrentProfile, currentProfile } = useProfileStore()
+    let { isEditProfileOpen, setIsEditProfileOpen } = useGeneralStore()
+
+    useEffect(() => {
+        setCurrentProfile(params?.id)
+        setPostsByUser(params?.id)
+    }, [])
+
     return (
         <>
             <MainLayout>
-                <ClientOnly>
-                <EditProfileOverlay />
-                </ClientOnly>
                 <div className="pt-[90px] pl-[90px] 2xl:pl-[185px] lg:pl-[160px] lg:pr-0 w-[calc(100%-90px)] pr-3 max-w-[1800px] 2xl:mx-auto">
                     <div className="flex w-[calc(100vw-230px)]">
                         <ClientOnly>
-                            {true ? (
-                                <img className="w-[120px] min-w-[120px] rounded-full" src={currentProfile.image}/>
+                            {currentProfile ? (
+                                <img className="w-[120px] min-w-[120px] rounded-full" src={useCreateBucketUrl(currentProfile?.image)}/>
                             ):(
                                 <div className="min-w-[150px] h-[120px] bg-gray-200 rounded-full" />
                             )}
@@ -45,8 +48,10 @@ export default function Profile({ params }: ProfilePageTypes) {
                                 )}
                             </ClientOnly>
 
-                            {true ? (
-                                <button className="flex item-center rounded-md py-1.5 px-3.5 mt-3 text-[15px] font-semibold border hover:bg-gray-100"
+                            {contextUser?.user?.id == params?.id ? (
+                                <button 
+                                    onClick={() => setIsEditProfileOpen(isEditProfileOpen = !isEditProfileOpen)}
+                                    className="flex item-center rounded-md py-1.5 px-3.5 mt-3 text-[15px] font-semibold border hover:bg-gray-100"
                                 >
                                     <BsPencil className='mt-0.5 mr-1' size='18'/>    
                                     <span>Edit profile</span>
@@ -85,13 +90,9 @@ export default function Profile({ params }: ProfilePageTypes) {
 
                     <ClientOnly>
                         <div className="mt-4 grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3">
-                            <PostUser post={{
-                                id:'123',
-                                user_id:'345',
-                                video_url:'/230175_small.mp4',
-                                text:'this is a post',
-                                created_at:'date here'
-                            }} />
+                            {postsByUser?.map((post, index) => (
+                                <PostUser key={index} post={post} />
+                            ))}
                         </div>
                     </ClientOnly>
                 </div>

@@ -4,9 +4,11 @@ import { useState } from "react";
 import TextInput from "../TextInput";
 import { BiLoaderCircle } from "react-icons/bi";
 import { useUser } from "@/app/context/user";
+import { useGeneralStore } from "@/app/stores/general";
 
 
-export default function Register(){
+export default function Register() {
+    let { setIsLoginOpen } = useGeneralStore();
      
     const contextUser = useUser()
     const router = useRouter()
@@ -59,7 +61,7 @@ export default function Register(){
             setLoading(true)
             await contextUser.register(name, email, password)
             setLoading(false)
-            // setIsLoginOpen(false)
+            setIsLoginOpen(false)
         } catch (error) {
             console.log(error)
             setLoading(false)
@@ -122,7 +124,7 @@ export default function Register(){
                             ${(!name || !email || !password || !confirmPassword) ? 'bg-gray-200' : 'bg-[#F02C56]'}
                             `}
                     >
-                        {loading ? <BiLoaderCircle className="animate-spin" color="#ffffff" size={25}/>:'Log in'}
+                        {loading ? <BiLoaderCircle className="animate-spin" color="#ffffff" size={25}/>:'Register'}
                     </button>
                 </div>
             </div>
